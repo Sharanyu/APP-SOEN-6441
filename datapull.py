@@ -11,7 +11,7 @@ data_staging= 'C:/Users/shara/Desktop/app/NYC_payroll_data.csv'
 
 # Create the client to point to the API endpoint
 client = Socrata(data_url,app_token)
-client.timeout = 600
+client.timeout = 200
 
 start_time = time.time()
 results = client.get(data_set, limit=10000000)
