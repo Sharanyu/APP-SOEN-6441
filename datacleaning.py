@@ -7,9 +7,9 @@ data_source= 'C:/Users/shara/Desktop/app/NYC_payroll_data.csv'
 
 df = pd.read_csv(data_source,dtype='unicode',engine='python')
 
-df["employee_name"] = df["first_name"] +' '+ df["last_name"]
+df["employee_name"] = df["first_name"] +' '+ df["mid_init"]+' '+ df["last_name"]
 
-df.drop(columns=['first_name','last_name'],axis=1, inplace=True)
+df.drop(columns=['first_name','last_name','mid_init'],axis=1, inplace=True)
 
 # Renaming Columns
 
@@ -18,7 +18,7 @@ df.rename(columns={'leave_status_as_of_july_31': 'work_status','regular_hours': 
 
 # Remove unwanted columns
 
-df.drop(columns='mid_init', inplace=True)
+# df.drop(columns='mid_init', inplace=True)
 
 # status meaning not clear need to modify
 
@@ -33,25 +33,22 @@ df = df[['fiscal_year','payroll_number', 'agency_name', 'agency_start_date',
        'base_salary_USD', 'pay_basis', 'work_hours', 'gross_salary_USD',
        'overtime_hours', 'overtime_commission_USD', 'other_pay_USD']]
 
-
-
-duplicate_rows = df[df.duplicated(keep=False)]
 df = df.drop_duplicates()
 print("No. of rows after removing duplicates :",len(df))
 
 df.dropna(subset = ['employee_name'],inplace=True)
+df.dropna(subset = ['title_description'],inplace=True)
+
 df['employee_name'].astype('str').str.replace(r".", r"", regex=False)
 df['employee_name'].astype('str').str.replace(r"-", r"", regex=False)
 
 df.sort_values(['fiscal_year', 'employee_name'], ascending=[True, True], inplace=True)
 df['work_location_borough'] = df.groupby(['agency_name'])['work_location_borough'].bfill()
-df
+df.dropna(subset = ['work_location_borough'],inplace=True)
 df.drop(df.loc[df['employee_name']=='xxx xxx'].index, inplace=True)
 df.drop(df.loc[df['pay_basis']=='Prorated Annual'].index, inplace=True)
 
+cols = df.select_dtypes(object).columns
+df[cols] = df[cols].apply(lambda x: x.str.strip())
+
 df.to_csv('C:/Users/shara/Desktop/app/NYC_payroll_data_cleaned.csv')
-
-
-
-
-
