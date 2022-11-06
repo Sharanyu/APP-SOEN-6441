@@ -10,7 +10,7 @@ df = pd.read_csv(data_source,dtype='unicode',engine='python')
 agency = df[['payroll_number','agency_name']]
 employee = df[['employee_id','employee_name']]
 payroll_reference = df[['payroll_number','employee_id']]
-employee_details = df[['employee_id','title_description','work_location_borough','fiscal_year','pay_basis','base_salary_USD', 'pay_basis','work_hours', 'gross_salary_USD', 'overtime_hours','overtime_commission_USD', 'other_pay_USD']]
+employee_details = df[['employee_id','title_description','work_location_borough','fiscal_year','pay_basis','base_salary_USD','work_hours', 'gross_salary_USD', 'overtime_hours','overtime_commission_USD', 'other_pay_USD']]
 agency = agency.drop_duplicates()
 employee_details = employee_details.drop_duplicates()
 employee = employee.drop_duplicates()
