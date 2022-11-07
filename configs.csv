@@ -1,0 +1,11 @@
+operation,configname,value
+Datapull,database,NYC_payroll_data
+Datapull,data_url,data.cityofnewyork.us
+Datapull,data_set,k397-673e
+Datapull,app_token,9Qn5F4x3U0TAab6TGAGQjHNCo
+Datapull,staginglocation,C:/Users/shara/Desktop/app/firstpush/codingstandards/Data/
+Pushdata,databaselocation,C:/sqlite/NYC_payroll_data.db
+Pushdata,tableemployee,employee
+Pushdata,tablepayroll,payroll_reference
+Pushdata,tableagency,agency
+Pushdata,tableempdetails,employee_details
