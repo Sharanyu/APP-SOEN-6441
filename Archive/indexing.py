@@ -1,37 +1,39 @@
 import pandas as pd
-from sodapy import Socrata
-import time
-import sqlite3
 
-data_source= 'C:/Users/shara/Desktop/app/NYC_payroll_data_cleaned.csv'
+configdf = pd.read_csv("configs.csv")
+data_staging = configdf.query('operation == "Datapull" & configname == "staginglocation"').value.values.tolist()[0]
 
-df = pd.read_csv(data_source,dtype='unicode',engine='python')
+df = pd.read_csv(data_staging+'NYC_payroll_data_cleaned.csv',dtype='unicode',engine='python')
 
-inputset = set(df['employee_name'].tolist())
+def indexdata(df):
 
-inputset2 = set(df['agency_name'].tolist())
+    inputset = set(df['employee_name'].tolist())
 
-output_dict = {val+1024:item for val,item in enumerate(inputset)}
+    inputset2 = set(df['agency_name'].tolist())
 
-output_dict2 = {val+100:item for val,item in enumerate(inputset2)}
+    output_dict = {val+1024:item for val,item in enumerate(inputset)}
 
-df_emp = pd.DataFrame(output_dict.items(), columns=['employee_id', 'employee_name'])
+    output_dict2 = {val+100:item for val,item in enumerate(inputset2)}
 
-df_agency = pd.DataFrame(output_dict2.items(), columns=['payroll_number', 'agency_name'])
+    df_emp = pd.DataFrame(output_dict.items(), columns=['employee_id', 'employee_name'])
 
-if df_agency.agency_name.nunique() == df_agency.payroll_number.nunique():
-    df.drop(['payroll_number'], axis = 1, inplace = True)
-final_df = df.merge(df_emp,on = 'employee_name')
-final_df = final_df.merge(df_agency,on = 'agency_name')
-print(final_df.columns)
+    df_agency = pd.DataFrame(output_dict2.items(), columns=['payroll_number', 'agency_name'])
 
-final_df.drop(columns=df.columns[0], axis=1, inplace=True)
-first_col = final_df.pop('employee_id')
-final_df.insert(0, 'employee_id',first_col)
+    if df_agency.agency_name.nunique() == df_agency.payroll_number.nunique():
+        df.drop(['payroll_number'], axis = 1, inplace = True)
+        
+    final_df = df.merge(df_emp,on = 'employee_name')
+    final_df = final_df.merge(df_agency,on = 'agency_name')
+    
+    print(final_df.columns)
 
-second_col = final_df.pop('payroll_number')
-final_df.insert(1, 'payroll_number',second_col)
+    final_df.drop(columns=df.columns[0], axis=1, inplace=True)
+    first_col = final_df.pop('employee_id')
+    final_df.insert(0, 'employee_id',first_col)
 
-print(final_df.columns)
+    second_col = final_df.pop('payroll_number')
+    final_df.insert(1, 'payroll_number',second_col)
+    
+    return final_df
 
-final_df.to_csv('C:/Users/shara/Desktop/app/NYC_payroll_data_cleaned_indexed.csv',index=False)
+indexdata(df).to_csv(data_staging+'NYC_payroll_data_cleaned_indexed.csv',index=False)
