@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List</title>
+    <title>Employee Information</title>
 </head>
 <body>
 
@@ -11,9 +11,6 @@
         <td>ID</td>
         <td>Name</td>
         <td>Fiscal Year</td>
-        <td>Borough</td>
-        <td>Gross Salary</td>
-
     </thead>
 
     {% for row in rows %}
@@ -21,8 +18,7 @@
             <td>{{row["employee_id"]}}</td>
             <td>{{row["employee_name"]}}</td>
             <td>{{row["fiscal_year"]}}</td>
-            <td>{{row["work_location_borough"]}}</td>
-            <td>{{row["gross_salary_USD"]}}</td>
+
         </tr>
 
     {% endfor %}
