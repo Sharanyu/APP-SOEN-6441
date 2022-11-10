@@ -1,0 +1,62 @@
+from flask import *
+import sqlite3
+import sys
+from models.employee import emp
+from models.employeedetails import empdetails
+
+
+# from payrollreference import payroll
+# from agency import agency
+
+class DBController():
+    def __init__(self):
+        self.cur = None
+        self.con = None
+
+    def __int__(self):
+        pass
+
+    def find(self, table_name, fetchall=False, params=None):
+        query = 'SELECT * FROM ' + table_name
+        self.cur.execute(query)
+        result = self.cur.fetchall()
+        return result
+
+    def find_emp(self, id):
+        self.con = sqlite3.connect("nyc.db")
+        self.con.row_factory = sqlite3.Row
+        self.cur = self.con.cursor()
+        emp.set_emp_id(id)
+        form_query = emp.get_emp_id()
+        print(
+            'SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="{0}"'.format(
+                form_query))
+        self.cur.execute(
+            'SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="{0}"'.format(
+                form_query))
+        rows = self.cur.fetchall()
+        return rows
+
+    def view_emp(self):
+        self.con = sqlite3.connect("nyc.db")
+        self.con.row_factory = sqlite3.Row
+        self.cur = self.con.cursor()
+        self.cur.execute(
+            "select employee.employee_id,employee.employee_name,fiscal_year,work_location_borough,gross_salary_USD from employee INNER JOIN employee_details ON employee.employee_id=employee_details.employee_id limit 5")
+        rows = self.cur.fetchall()
+        return rows
+
+    def view_emp_from(self, location):
+        self.con = sqlite3.connect("nyc.db")
+        self.con.row_factory = sqlite3.Row
+        self.cur = self.con.cursor()
+        empdetails.set_location(location)
+        form_query = empdetails.get_location()
+        print(
+            'select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="{0}"'.format(
+                form_query))
+        self.cur.execute(
+            'select employee.employee_id,employee_name,fiscal_year from employee join employee_details on employee.employee_id=employee_details.employee_id where work_location_borough="{0}"'.format(
+                form_query))
+        rows = self.cur.fetchall()
+        return rows
