@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>List</title>
 </head>
+
 <body>
 
-<h3>Employee Information</h3>
-<table border=5>
-    <thead>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Fiscal Year</td>
-        <td>Borough</td>
-        <td>Gross Salary</td>
+    <h3>Employee Information</h3>
+    <table border=5>
+        <thead>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Fiscal Year</td>
+            <td>Borough</td>
+            <td>Gross Salary</td>
 
-    </thead>
+        </thead>
 
-    {% for row in rows %}
+        {% for row in rows %}
         <tr>
             <td>{{row["employee_id"]}}</td>
             <td>{{row["employee_name"]}}</td>
@@ -25,11 +27,12 @@
             <td>{{row["gross_salary_USD"]}}</td>
         </tr>
 
-    {% endfor %}
-</table>
-<br><br>
+        {% endfor %}
+    </table>
+    <br><br>
 
-<a href="/">Go back to home page</a>
+    <a href="/">Go back to home page</a>
 
 </body>
+
 </html>
