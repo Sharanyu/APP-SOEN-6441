@@ -1,5 +1,5 @@
 import pandas as pd
-from configClass import Config
+from config_class import Config
 
 
 class Index:

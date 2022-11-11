@@ -1,9 +1,9 @@
-from configClass import Config
-from datapull import Extract
-from datacleaning import Transform
+from config_class import Config
+from extract import Extract
+from cleaner import Transform
 from indexing import Index
-from TableData import TableData
-from push_data import LoadData
+from split_data import TableData
+from loading import LoadData
 
 if __name__ == '__main__':
     extract = Extract()

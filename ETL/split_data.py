@@ -1,5 +1,4 @@
 import pandas as pd
-from sodapy import Socrata
 import time
 import sqlite3
 
