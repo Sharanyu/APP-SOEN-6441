@@ -18,9 +18,13 @@ class LoadData:
             create_table_query = """CREATE TABLE IF NOT EXISTS employee (employee_id INT PRIMARY KEY,employee_name TEXT NOT NULL UNIQUE);"""
             cursor = sqliteConnection.cursor()
             print("Successfully Connected to SQLite")
-            cursor.execute(create_table_query)
-            sqliteConnection.commit()
-            print("SQLite table Employee created")
+            self._commit(
+                cursor,
+                create_table_query,
+                sqliteConnection,
+                "SQLite table Employee created",
+            )
+
         except sqlite3.Error as error:
             print("Error while creating a sqlite table :", error)
             cursor.close()
@@ -32,9 +36,13 @@ class LoadData:
             cursor = sqliteConnection.cursor()
             create_table_query = """CREATE TABLE IF NOT EXISTS employee_details (employee_id INT PRIMARY KEY,title_description TEXT,work_location_borough TEXT,fiscal_year INT,pay_basis TEXT,base_salary_USD REAL,work_hours REAL, gross_salary_USD REAL, overtime_hours REAL,overtime_commission_USD REAL, other_pay_USD REAL);"""
             cursor = sqliteConnection.cursor()
-            cursor.execute(create_table_query)
-            sqliteConnection.commit()
-            print("SQLite table EmployeeDetails created")
+            self._commit(
+                cursor,
+                create_table_query,
+                sqliteConnection,
+                "SQLite table EmployeeDetails created",
+            )
+
         except sqlite3.Error as error:
             print("Error while creating a sqlite table :", error)
             cursor.close()
@@ -46,9 +54,13 @@ class LoadData:
             cursor = sqliteConnection.cursor()
             create_table_query = """CREATE TABLE IF NOT EXISTS payroll_reference (payroll_number INT,employee_id INT PRIMARY KEY);"""
             cursor = sqliteConnection.cursor()
-            cursor.execute(create_table_query)
-            sqliteConnection.commit()
-            print("SQLite table Payroll created")
+            self._commit(
+                cursor,
+                create_table_query,
+                sqliteConnection,
+                "SQLite table Payroll created",
+            )
+
         except sqlite3.Error as error:
             print("Error while creating a sqlite table :", error)
             cursor.close()
@@ -60,11 +72,20 @@ class LoadData:
             cursor = sqliteConnection.cursor()
             create_table_query = """CREATE TABLE IF NOT EXISTS agency (payroll_number INT PRIMARY KEY,agency_name TEXT NOT NULL UNIQUE);"""
             cursor = sqliteConnection.cursor()
-            cursor.execute(create_table_query)
-            sqliteConnection.commit()
-            print("SQLite table Agency created")
+            self._commit(
+                cursor,
+                create_table_query,
+                sqliteConnection,
+                "SQLite table Agency created",
+            )
+
         except sqlite3.Error as error:
             print("Error while creating a sqlite table :", error)
+
+    def _commit(self, cursor, create_table_query, sqliteConnection, arg3):
+        cursor.execute(create_table_query)
+        sqliteConnection.commit()
+        print(arg3)
 
     def write_table(
         self, database, agency, employee, payroll_reference, employee_details
