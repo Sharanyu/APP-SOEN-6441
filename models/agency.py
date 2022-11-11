@@ -1,4 +1,4 @@
-class agency:
+class Agency:
     def __init__(self):
         self.payroll_number=None
         self.agency_name=None
@@ -14,4 +14,4 @@ class agency:
     def get_agency_name(self):
         return self.agency_name
 
-agency = agency()
+agency = Agency()

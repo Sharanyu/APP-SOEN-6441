@@ -1,4 +1,4 @@
-class employeedetails:
+class EmployeeDetails:
     def _int_(self):
         self.employee_id = None
         self.title_description = None
@@ -19,4 +19,4 @@ class employeedetails:
         self.fiscal_year = fiscal_year
     def get_fiscal_year(self):
         return self.fiscal_year
-empdetails = employeedetails()
+empdetails = EmployeeDetails()

@@ -1,4 +1,4 @@
-class employee:
+class Employee:
     def __int__(self):
         self.employee_id = None
         self.employee_name = None
@@ -24,4 +24,4 @@ class employee:
         return c.fetchall()
 
 
-emp = employee()
+emp = Employee()

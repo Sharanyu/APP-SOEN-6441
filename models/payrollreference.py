@@ -1,4 +1,4 @@
-class payrollreference:
+class PayrollReference:
     def _int_(self):
         self.payroll_number = None
         self.employee_id = None
@@ -14,4 +14,4 @@ class payrollreference:
     def get_payroll_number(self):
         return self.payroll_number
 
-payroll = payrollreference()
+payroll = PayrollReference()
