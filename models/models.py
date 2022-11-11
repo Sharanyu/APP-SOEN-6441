@@ -18,11 +18,6 @@ class DBController:
     def __int__(self):
         pass
 
-    def find(self, table_name, fetchall=False, params=None):
-        query = f"SELECT * FROM {table_name}"
-        self.cur.execute(query)
-        return self.cur.fetchall()
-
     def find_emp(self, id):
         self._db_connection()
         emp.set_emp_id(id)
