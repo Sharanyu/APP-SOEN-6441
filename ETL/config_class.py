@@ -32,23 +32,3 @@ class Config:
         return config_df.query(
             'operation == "Datapull" & configname == "app_token"'
         ).value.values.tolist()[0]
-
-    def get_employee_tableName(self, config_df):
-        return config_df.query(
-            'operation == "Pushdata" & configname == "tableemployee"'
-        ).value.values.tolist()[0]
-
-    def get_payroll_tablename(self, config_df):
-        return config_df.query(
-            'operation == "Pushdata" & configname == "tablepayroll"'
-        ).value.values.tolist()[0]
-
-    def get_agency_tableName(self, config_df):
-        return config_df.query(
-            'operation == "Pushdata" & configname == "tableagency"'
-        ).value.values.tolist()[0]
-
-    def get_employee_details_tablename(self, config_df):
-        return config_df.query(
-            'operation == "Pushdata" & configname == "tableempdetails"'
-        ).value.values.tolist()[0]
