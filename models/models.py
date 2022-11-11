@@ -48,12 +48,8 @@ class DBController():
         self.cur = self.con.cursor()
         empdetails.set_location(location)
         form_query = empdetails.get_location()
-        print(
-            'select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="{0}"'.format(
-                form_query))
-        self.cur.execute(
-            'select employee.employee_id,employee_name,fiscal_year from employee join employee_details on employee.employee_id=employee_details.employee_id where work_location_borough="{0}"'.format(
-                form_query))
+        print('select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="{0}"'.format(form_query))
+        self.cur.execute('select employee.employee_id,employee_name,fiscal_year from employee join employee_details on employee.employee_id=employee_details.employee_id where work_location_borough="{0}"'.format(form_query))
         rows = self.cur.fetchall()
         return rows
     
@@ -63,11 +59,7 @@ class DBController():
         self.cur = self.con.cursor()
         empdetails.set_fiscal_year(fiscal_year)
         form_query = empdetails.get_fiscal_year()
-        print(
-            'select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5'.format(
-                form_query))
-        self.cur.execute(
-            'select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5'.format(
-                form_query))
+        print('select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5'.format(form_query))
+        self.cur.execute('select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5'.format(form_query))
         rows = self.cur.fetchall()
         return rows
