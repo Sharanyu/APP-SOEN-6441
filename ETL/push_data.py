@@ -1,14 +1,14 @@
 import sqlite3
 import pandas as pd
-from configClass import config
+from configClass import Config
 
 class LoadData:
     def __init__(self):
-        self.configObj = config()
-        self.configdf = self.configObj.readConfig()
-    def createEmployeeTable(self,database):
+        self.configObj = Config()
+        self.configdf = self.configObj.read_config()
+    def create_employee_table(self,database):
         try:
-            database= self.configObj.getDatabase(self.configdf)
+            database= self.configObj.get_database(self.configdf)
             sqliteConnection = sqlite3.connect(database)
             cursor = sqliteConnection.cursor()
             create_table_query = '''CREATE TABLE IF NOT EXISTS employee (employee_id INT PRIMARY KEY,employee_name TEXT NOT NULL UNIQUE);'''
@@ -21,9 +21,9 @@ class LoadData:
             print("Error while creating a sqlite table :", error)
             cursor.close()
             
-    def createEmployeeDetailsTable(self,database):
+    def create_employee_details_table(self,database):
         try:
-            database= self.configObj.getDatabase(self.configdf)
+            database= self.configObj.get_database(self.configdf)
             sqliteConnection = sqlite3.connect(database)
             cursor = sqliteConnection.cursor()
             create_table_query = '''CREATE TABLE IF NOT EXISTS employee_details (employee_id INT PRIMARY KEY,title_description TEXT,work_location_borough TEXT,fiscal_year INT,pay_basis TEXT,base_salary_USD REAL,work_hours REAL, gross_salary_USD REAL, overtime_hours REAL,overtime_commission_USD REAL, other_pay_USD REAL);'''
@@ -35,9 +35,9 @@ class LoadData:
             print("Error while creating a sqlite table :", error)
             cursor.close()
             
-    def createPayrollTable(self,database):
+    def create_payroll_table(self,database):
         try:
-            database= self.configObj.getDatabase(self.configdf)
+            database= self.configObj.get_database(self.configdf)
             sqliteConnection = sqlite3.connect(database)
             cursor = sqliteConnection.cursor()
             create_table_query = '''CREATE TABLE IF NOT EXISTS payroll_reference (payroll_number INT,employee_id INT PRIMARY KEY);'''
@@ -49,9 +49,9 @@ class LoadData:
             print("Error while creating a sqlite table :", error)
             cursor.close()
             
-    def createAgencyTable(self,database):
+    def create_agency_table(self,database):
         try:
-            database= self.configObj.getDatabase(self.configdf)
+            database= self.configObj.get_database(self.configdf)
             sqliteConnection = sqlite3.connect(database)
             cursor = sqliteConnection.cursor()
             create_table_query = '''CREATE TABLE IF NOT EXISTS agency (payroll_number INT PRIMARY KEY,agency_name TEXT NOT NULL UNIQUE);'''
@@ -62,8 +62,8 @@ class LoadData:
         except sqlite3.Error as error:
             print("Error while creating a sqlite table :", error)
     
-    def writeTable(self,database,agency,employee,employee_details,payroll_reference):
-        database= self.configObj.getDatabase(self.configdf)
+    def write_table(self,database,agency,employee,payroll_reference,employee_details):
+        database= self.configObj.get_database(self.configdf)
         sqliteConnection = sqlite3.connect(database)
         cur = sqliteConnection.cursor()
         try:
@@ -91,14 +91,3 @@ class LoadData:
             print("Error while uploading employee_details table data", error)
     
         sqliteConnection.commit()
-
-# loadObj = LoadData()
-# confObj =config()
-# df_config = confObj.readConfig()
-# database = confObj.getDatabase(df_config)
-
-# loadObj.createEmployeeTable(database)
-# loadObj.createEmployeeDetailsTable(database)
-# loadObj.createPayrollTable(database)
-# loadObj.createAgencyTable(database)
-# loadObj.writeTable(database,agency,employee,employee_details,payroll_reference)

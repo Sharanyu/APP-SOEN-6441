@@ -1,4 +1,4 @@
-from configClass import config
+from configClass import Config
 from datapull import Extract
 from datacleaning import Transform
 from indexing import Index
@@ -11,14 +11,14 @@ if __name__ == '__main__':
     indexObj = Index()
     tdObj = TableData()
     pdObj = LoadData()
-    configObj = config()
+    configObj = Config()
     
     raw_data = extract.get_data()
-    transformed_data = transform.transformdata(raw_data)
-    indexed_data = indexObj.indexdata(transformed_data)
+    transformed_data = transform.transform_data(raw_data)
+    indexed_data = indexObj.index_data(transformed_data)
     agencyModel,employeeModel,payrollModel,employeedetailsModel = tdObj.split(indexed_data)
-    pdObj.createEmployeeTable(configObj.getDatabase(configObj.readConfig()))
-    pdObj.createEmployeeDetailsTable(configObj.getDatabase(configObj.readConfig()))
-    pdObj.createPayrollTable(configObj.getDatabase(configObj.readConfig()))
-    pdObj.createAgencyTable(configObj.getDatabase(configObj.readConfig()))
-    pdObj.writeTable(configObj.getDatabase(configObj.readConfig()),agencyModel,employeeModel,payrollModel,employeedetailsModel)
+    pdObj.create_employee_table(configObj.get_database(configObj.read_config()))
+    pdObj.create_employee_details_table(configObj.get_database(configObj.read_config()))
+    pdObj.create_payroll_table(configObj.get_database(configObj.read_config()))
+    pdObj.create_agency_table(configObj.get_database(configObj.read_config()))
+    pdObj.write_table(configObj.get_database(configObj.read_config()),agencyModel,employeeModel,payrollModel,employeedetailsModel)

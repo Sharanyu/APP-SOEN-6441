@@ -1,12 +1,12 @@
 import pandas as pd
-from configClass import config
+from configClass import Config
 
 class Transform:
     def __init__(self):
-        self.configObj = config()
-        self.configdf = self.configObj.readConfig()
-        data_staging = self.configObj.getStaging(self.configdf)
-    def transformdata(self,df):
+        self.configObj = Config()
+        self.configdf = self.configObj.read_config()
+        data_staging = self.configObj.get_staging(self.configdf)
+    def transform_data(self,df):
         df["employee_name"] = df["first_name"] +' '+ df["mid_init"]+' '+ df["last_name"]
         
         df.drop(columns=['first_name','last_name','mid_init'],axis=1, inplace=True)

@@ -1,25 +1,25 @@
 import pandas as pd
 
-class config:
+class Config:
     def __init__(self):
         pass
-    def readConfig(self):
+    def read_config(self):
         return pd.read_csv("configs.csv",quotechar="'")
-    def getStaging(self,configdf):
+    def get_staging(self,configdf):
         return configdf.query('operation == "Datapull" & configname == "staginglocation"').value.values.tolist()[0]
-    def getDataURL(self,configdf):
+    def get_data_url(self,configdf):
         return configdf.query('operation == "Datapull" & configname == "data_url"').value.values.tolist()[0]
-    def getDataset(self,configdf):
+    def get_dataset(self,configdf):
         return configdf.query('operation == "Datapull" & configname == "data_set"').value.values.tolist()[0]
-    def getDatabase(self,configdf):
+    def get_database(self,configdf):
         return configdf.query('operation == "Datapull" & configname == "database"').value.values.tolist()[0]
-    def getToken(self,configdf):
+    def get_token(self,configdf):
         return configdf.query('operation == "Datapull" & configname == "app_token"').value.values.tolist()[0]
-    def getEmployeeTableName(self,configdf):
+    def get_employee_tableName(self,configdf):
         return configdf.query('operation == "Pushdata" & configname == "tableemployee"').value.values.tolist()[0]
-    def getPayrollTableName(self,configdf):
+    def get_payroll_tablename(self,configdf):
         return configdf.query('operation == "Pushdata" & configname == "tablepayroll"').value.values.tolist()[0]
-    def getAgencyTableName(self,configdf):
+    def get_agency_tableName(self,configdf):
         return configdf.query('operation == "Pushdata" & configname == "tableagency"').value.values.tolist()[0]
-    def getEmployeeDetailsTableName(self,configdf):
+    def get_employee_details_tablename(self,configdf):
         return configdf.query('operation == "Pushdata" & configname == "tableempdetails"').value.values.tolist()[0]

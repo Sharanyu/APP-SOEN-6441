@@ -1,13 +1,13 @@
 import pandas as pd
-from configClass import config
+from configClass import Config
 
 
 class Index:
     def __init__(self):
-        self.configObj = config()
-        self.configdf = self.configObj.readConfig()
-        data_staging = self.configObj.getStaging(self.configdf)
-    def indexdata(self,df):
+        self.configObj = Config()
+        self.configdf = self.configObj.read_config()
+        data_staging = self.configObj.get_staging(self.configdf)
+    def index_data(self,df):
         inputset = set(df['employee_name'].tolist())
     
         inputset2 = set(df['agency_name'].tolist())
