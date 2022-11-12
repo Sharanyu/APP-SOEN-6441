@@ -1,5 +1,5 @@
 # importing required libraries
-from routes.routes import app
+from controllers.controller import app
 
 
 # main condition to execute the app

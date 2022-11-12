@@ -6,21 +6,29 @@
 </head>
 
 <body>
-
     <h3>Employee Information</h3>
     <table border=5>
         <thead>
             <td>ID</td>
             <td>Name</td>
+            <td>Agency Name</td>
             <td>Fiscal Year</td>
+            <td>Borough</td>
+            <td>Role</td>
+            <td>Work Hours</td>
+            <td>Gross Salary USD</td>
         </thead>
 
         {% for row in rows %}
         <tr>
             <td>{{row["employee_id"]}}</td>
             <td>{{row["employee_name"]}}</td>
+            <td>{{row["agency_name"]}}</td>
             <td>{{row["fiscal_year"]}}</td>
-
+            <td>{{row["work_location_borough"]}}</td>
+            <td>{{row["title_description"]}}</td>
+            <td>{{row["work_hours"]}}</td>
+            <td>{{row["gross_salary_USD"]}}</td>
         </tr>
 
         {% endfor %}

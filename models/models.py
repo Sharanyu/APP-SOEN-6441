@@ -1,12 +1,9 @@
 # importing required libraries
 import sqlite3
-import sys
-
-from flask import *
 
 # importing objects of tables
-from models.Employee import emp
-from models.EmployeeDetails import empdetails
+from models.employee import emp
+from models.employeedetails import empdetails
 
 # DBController class is the main component of Model component of MVC architecture.
 class DBController:
@@ -32,7 +29,7 @@ class DBController:
     def view_emp(self):
         self._db_connection()
         self.cur.execute(
-            "select employee.employee_id,employee.employee_name,fiscal_year,work_location_borough,gross_salary_USD from employee INNER JOIN employee_details ON employee.employee_id=employee_details.employee_id limit 5"
+            "select employee.employee_id,employee.employee_name,fiscal_year,work_location_borough,gross_salary_USD from employee INNER JOIN employee_details ON employee.employee_id=employee_details.employee_id limit 200"
         )
         return self.cur.fetchall()
 
@@ -66,6 +63,7 @@ class DBController:
 
     # defining a helper function to call establish db connection. This will reduce redundant code and improve code readability
     def _db_connection(self):
-        self.con = sqlite3.connect("nyc.db")
+        self.con = sqlite3.connect("database/NYC_payroll_data.db")
         self.con.row_factory = sqlite3.Row
         self.cur = self.con.cursor()
+dbc = DBController()

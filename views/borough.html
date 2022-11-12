@@ -6,16 +6,29 @@
 </head>
 
 <body>
+
     <h2>Filter Employee by Borough </h2>
     <form action="/borough_filter_borough" method="post">
         <p>Please select your Borough:</p>
+        <input type="radio" id="BROOKLYN" name="borough" value="BROOKLYN">
+        <label for="BROOKLYN">BROOKLYN</label>
+
         <input type="radio" id="MANHATTAN" name="borough" value="MANHATTAN">
         <label for="MANHATTAN">MANHATTAN</label>
+
         <input type="radio" id="BRONX" name="borough" value="BRONX">
         <label for="BRONX">BRONX</label>
+
+        <input type="radio" id="QUEENS" name="borough" value="QUEENS">
+        <label for="QUEENS">MANHATTAN</label>
+
+        <input type="radio" id="RICHMOND" name="borough" value="RICHMOND">
+        <label for="RICHMOND">RICHMOND</label>
         <br><br>
         <input type="submit" value="Submit">
     </form>
+
+<br><br><a href="/">Go back to home page</a>
 </body>
 
 </html>
