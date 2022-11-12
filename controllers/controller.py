@@ -31,6 +31,8 @@ def find():
 def find_id():
     id = request.form["id"]
     rows = dbc.find_emp(id)
+    if len(rows) == 0:
+        return render_template("failed_find.html")
     return render_template("find_success.html", rows=rows)
 
 
