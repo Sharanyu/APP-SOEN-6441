@@ -2,8 +2,8 @@
 import sqlite3
 
 # importing objects of tables
-from employee import emp
-from employeedetails import empdetails
+from models.employee import emp
+from models.employeedetails import empdetails
 
 # DBController class is the main component of Model component of MVC architecture.
 class DBController:
