@@ -1,0 +1,69 @@
+============================= test session starts =============================
+platform win32 -- Python 3.10.8, pytest-7.2.0, pluggy-1.0.0 -- C:\Python310\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.10.8', 'Platform': 'Windows-10-10.0.22621-SP0', 'Packages': {'pytest': '7.2.0', 'pluggy': '1.0.0'}, 'Plugins': {'anyio': '3.6.2', 'html': '3.2.0', 'metadata': '2.0.4'}, 'JAVA_HOME': 'C:\\Program Files\\Eclipse Adoptium\\jdk-11.0.15.10-hotspot\\'}
+rootdir: C:\Users\shara\Desktop\app\firstpush\codingstandards\Classes\models
+plugins: anyio-3.6.2, html-3.2.0, metadata-2.0.4
+collecting ... collected 10 items
+
+test_models.py::test_find_emp1 PASSED                                    [ 10%]
+test_models.py::test_find_emp2 FAILED                                    [ 20%]
+test_models.py::test_find_emp3 PASSED                                    [ 30%]
+test_models.py::test_view_emp PASSED                                     [ 40%]
+test_models.py::test_view_emp_from_bronx PASSED                          [ 50%]
+test_models.py::test_view_emp_from_manhattan PASSED                      [ 60%]
+test_models.py::test_view_emp_from_queens PASSED                         [ 70%]
+test_models.py::test_view_emp_from_richmond PASSED                       [ 80%]
+test_models.py::test_view_emp_from_brooklyn PASSED                       [ 90%]
+test_models.py::test_view_emp_from_montreal FAILED                       [100%]
+
+================================== FAILURES ===================================
+_______________________________ test_find_emp2 ________________________________
+
+    def test_find_emp2():
+>       assert (
+            modelObj.find_emp("15877")[0]["employee_name"]
+            == "some Firstname and some Lastname"
+        )
+E       AssertionError: assert 'ALECIA J SIMMONDS' == 'some Firstna...some Lastname'
+E         - some Firstname and some Lastname
+E         + ALECIA J SIMMONDS
+
+test_models.py:9: AssertionError
+---------------------------- Captured stdout call -----------------------------
+SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="15877"
+_________________________ test_view_emp_from_montreal _________________________
+
+    def test_view_emp_from_montreal():
+        data = modelObj.view_emp_from("MONTREAL")
+>       assert len(data) > 0
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+test_models.py:54: AssertionError
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="MONTREAL"
+=================================== PASSES ====================================
+_______________________________ test_find_emp1 ________________________________
+---------------------------- Captured stdout call -----------------------------
+SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="1234"
+_______________________________ test_find_emp3 ________________________________
+---------------------------- Captured stdout call -----------------------------
+SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="5212"
+__________________________ test_view_emp_from_bronx ___________________________
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="BRONX"
+________________________ test_view_emp_from_manhattan _________________________
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="MANHATTAN"
+__________________________ test_view_emp_from_queens __________________________
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="QUEENS"
+_________________________ test_view_emp_from_richmond _________________________
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="RICHMOND"
+_________________________ test_view_emp_from_brooklyn _________________________
+---------------------------- Captured stdout call -----------------------------
+select employee.employee_id,employee_name from employee INNER JOIN employee_details on employee.employee_id=employee_details.employee_id WHERE work_location_borough="BROOKLYN"
+- generated html file: file:///C:/Users/shara/Desktop/app/firstpush/codingstandards/Classes/models/APP-SOEN-6441-Project_test_report.html -
+========================= 2 failed, 8 passed in 0.64s =========================

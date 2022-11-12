@@ -1,0 +1,1 @@
+pytest -rPx -v --tb=long >> APP-SOEN-6441-Project_test_report.txt --html=APP-SOEN-6441-Project_test_report.html
