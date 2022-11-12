@@ -1,14 +1,16 @@
+# importing required libraries
 import pandas as pd
 
 from config_class import Config
 
-
+# defing a class which has method to create indexes to the existing classes for optimised query and create relationships between tables.
 class Index:
     def __init__(self):
         self.configObj = Config()
         self.configdf = self.configObj.read_config()
         data_staging = self.configObj.get_staging(self.configdf)
 
+    # function which accepts a dataframe creates unique IDs
     def index_data(self, df):
         inputset = set(df["employee_name"].tolist())
 

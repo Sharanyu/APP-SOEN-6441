@@ -1,13 +1,15 @@
+# importing required libraries
 import pandas as pd
 from config_class import Config
 
-
+# defing a class which has methods to
 class Transform:
     def __init__(self):
         self.configObj = Config()
         self.config_extracted_df = self.configObj.read_config()
         data_staging = self.configObj.get_staging(self.config_extracted_df)
 
+    # method which accepts a dataframe and performs some transformations before returning it to next function.
     def transform_data(self, extracted_df):
         extracted_df["employee_name"] = (
             extracted_df["first_name"]

@@ -1,15 +1,14 @@
+# importing required libraries
 import sqlite3
 import sys
 
 from flask import *
 
+# importing objects of tables
 from models.Employee import emp
 from models.EmployeeDetails import empdetails
 
-# from payrollreference import payroll
-# from agency import agency
-
-
+# DBController class is the main component of Model component of MVC architecture.
 class DBController:
     def __init__(self):
         self.cur = None
@@ -18,6 +17,7 @@ class DBController:
     def __int__(self):
         pass
 
+    # defining a function which accepts a id from the user and uses the data mapper object to fetch details from the database about the employuee_id.
     def find_emp(self, id):
         self._db_connection()
         emp.set_emp_id(id)
@@ -28,6 +28,7 @@ class DBController:
             'SELECT employee.employee_id,employee_name,agency_name,fiscal_year,work_location_borough,title_description,work_hours,gross_salary_USD FROM employee JOIN employee_details ON employee.employee_id = employee_details.employee_id JOIN payroll_reference ON employee.employee_id = payroll_reference.employee_id JOIN agency ON payroll_reference.payroll_number = agency.payroll_number WHERE employee.employee_id ="{0}"',
         )
 
+    # defining a function which display 5 records from the database.
     def view_emp(self):
         self._db_connection()
         self.cur.execute(
@@ -35,6 +36,7 @@ class DBController:
         )
         return self.cur.fetchall()
 
+    # defining a function which accepts a location from the user and uses the data mapper object to fetch details from the database about the location.
     def view_emp_from(self, location):
         self._db_connection()
         empdetails.set_location(location)
@@ -45,6 +47,7 @@ class DBController:
             'select employee.employee_id,employee_name,fiscal_year from employee join employee_details on employee.employee_id=employee_details.employee_id where work_location_borough="{0}"',
         )
 
+    # defining a function which accepts a year from the user and uses the data mapper object to fetch details from the database about the fiscal_year.
     def top_5_earners(self, fiscal_year):
         self._db_connection()
         empdetails.set_fiscal_year(fiscal_year)
@@ -55,13 +58,13 @@ class DBController:
             "select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5",
         )
 
-    # TODO Rename this here and in `find_emp`, `view_emp`, `view_emp_from` and `top_5_earners`
+    # defining a helper function to call execute and fetch methods. This will reduce redundant code and improve code readability
     def _execute_query(self, arg0, form_query, arg2):
         print(arg0.format(form_query))
         self.cur.execute(arg2.format(form_query))
         return self.cur.fetchall()
 
-    # TODO Rename this here and in `find_emp`, `view_emp`, `view_emp_from` and `top_5_earners`
+    # defining a helper function to call establish db connection. This will reduce redundant code and improve code readability
     def _db_connection(self):
         self.con = sqlite3.connect("nyc.db")
         self.con.row_factory = sqlite3.Row
