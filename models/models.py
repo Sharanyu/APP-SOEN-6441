@@ -2,8 +2,8 @@
 import sqlite3
 
 # importing objects of tables
-from models.employee import emp
-from models.employeedetails import empdetails
+from employee import emp
+from employeedetails import empdetails
 
 # DBController class is the main component of Model component of MVC architecture.
 class DBController:
@@ -50,9 +50,9 @@ class DBController:
         empdetails.set_fiscal_year(fiscal_year)
         form_query = empdetails.get_fiscal_year()
         return self._execute_query(
-            "select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5",
+            "select employee.employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5",
             form_query,
-            "select employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5",
+            "select employee.employee_id, employee_name, gross_salary_USD from employee join employee_details on employee.employee_id = employee_details.employee_id where fiscal_year = {0} order by gross_salary_USD desc limit 5",
         )
 
     # defining a helper function to call execute and fetch methods. This will reduce redundant code and improve code readability
