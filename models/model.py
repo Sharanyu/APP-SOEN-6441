@@ -63,7 +63,7 @@ class DBController:
 
     # defining a helper function to call establish db connection. This will reduce redundant code and improve code readability
     def _db_connection(self):
-        self.con = sqlite3.connect("D:/APP-SOEN-6441/database/NYC_payroll_data.db")
+        self.con = sqlite3.connect("database/NYC_payroll_data.db")
         self.con.row_factory = sqlite3.Row
         self.cur = self.con.cursor()
 dbc = DBController()

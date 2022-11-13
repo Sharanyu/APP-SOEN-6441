@@ -1,6 +1,6 @@
 # importing required libraries
 from flask import *
-from models.models import dbc
+from models import dbc
 
 # Initialising the flask object
 app = Flask(__name__, template_folder="../views/")
