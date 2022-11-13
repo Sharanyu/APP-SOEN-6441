@@ -24,7 +24,7 @@ def test_find_emp3():
 
 # Positive scenario - function to test the method view_emp in the database and check if it returns only 200 records as expected.
 def test_view_emp():
-    data = dbc.view_emp()[0]
+    data = dbc.view_emp()
     assert len(data) == 200
 
 
