@@ -1,5 +1,5 @@
 # importing necessary objects for testing the methods
-from models.models import dbc
+from models import dbc
 
 # Positive scenario - function to test the method find_emp with employee_id '1234' in the database and check if it is "YOLANDA M CASTILLO-CARDEN"
 def test_find_emp1():
