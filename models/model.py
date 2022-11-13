@@ -5,6 +5,11 @@ import sqlite3
 from models.employee import emp
 from models.employeedetails import empdetails
 
+# setting database path
+from pathlib import Path
+PROJECT_ROOT = Path(__file__).parents[1]
+DB_PATH=PROJECT_ROOT/'database'/'NYC_payroll_data.db'
+
 # DBController class is the main component of Model component of MVC architecture.
 class DBController:
     def __init__(self):
@@ -63,7 +68,7 @@ class DBController:
 
     # defining a helper function to call establish db connection. This will reduce redundant code and improve code readability
     def _db_connection(self):
-        self.con = sqlite3.connect("database/NYC_payroll_data.db")
+        self.con = sqlite3.connect(DB_PATH)
         self.con.row_factory = sqlite3.Row
         self.cur = self.con.cursor()
 dbc = DBController()
