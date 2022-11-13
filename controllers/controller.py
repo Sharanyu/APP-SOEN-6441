@@ -25,14 +25,14 @@ def view():
     return render_template("view.html", rows=rows)
 
 
-# route to render the find.html
-@app.route("/find_index")
+# route to render the find_employee.html
+@app.route("/find_emp")
 def find():
     print("Controller: Routing the Find Employee Page for the Client")
-    return render_template("find.html")
+    return render_template("find_employee.html")
 
-# route to render the find_success.html
-@app.route("/find_findID", methods=["POST", "GET"])
+# route to render the find_emp_success.html
+@app.route("/emp_info", methods=["POST", "GET"])
 def find_id():
     print("Controller : Sending Query to Model")
     id = request.form["id"]
@@ -40,9 +40,9 @@ def find_id():
     print("Controller : Received Query Results from Model")
     if len(rows) == 0:
         print("Controller : Routing the HTML Page with Results for the Client")
-        return render_template("failed_find.html")
+        return render_template("find_emp_failed.html")
     print("Controller : Routing the HTML Page with Results for the Client")
-    return render_template("find_success.html", rows=rows)
+    return render_template("find_emp_success.html", rows=rows)
 
 
 # route to render the top_earners.html
