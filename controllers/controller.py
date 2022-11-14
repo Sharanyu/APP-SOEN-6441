@@ -6,7 +6,6 @@ from models import dbc
 app = Flask(__name__, template_folder="../views/")
 
 
-
 # route to render the index.html
 @app.route("/")
 def index():
@@ -14,6 +13,7 @@ def index():
     return render_template(
         "index.html",
     )
+
 
 # route to render the view.html
 @app.route("/view_index")
@@ -30,6 +30,7 @@ def view():
 def find():
     print("Controller: Routing the Find Employee Page for the Client")
     return render_template("find_employee.html")
+
 
 # route to render the find_emp_success.html
 @app.route("/emp_info", methods=["POST", "GET"])
@@ -51,6 +52,7 @@ def top_earners():
     print("Controller: Routing the Top Earners Page for the Client")
     return render_template("top_earners.html")
 
+
 # route to render the earners_success.html
 @app.route("/top_earners_filter", methods=["POST", "GET"])
 def top_earners_filter():
@@ -68,6 +70,7 @@ def filter():
     print("Controller: Routing the Borough Selection Page for the Client")
     return render_template("borough.html")
 
+
 # route to render the borough_success.html
 @app.route("/borough_filter_borough", methods=["POST", "GET"])
 def filter_borough():
@@ -77,8 +80,3 @@ def filter_borough():
     print("Controller : Received Query Results from Model")
     print("Controller : Routing the HTML Page with Results for the Client")
     return render_template("borough_success.html", rows=rows)
-
-
-
-
-

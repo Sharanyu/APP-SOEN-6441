@@ -9,17 +9,13 @@ def test_find_emp1():
 # Negative scenario - function to test the method find_emp with employee_id '15877' in the database and check if it is "some Firstname and some Lastname"
 def test_find_emp2():
     assert (
-        dbc.find_emp("15877")[0]["employee_name"]
-        == "some Firstname and some Lastname"
+        dbc.find_emp("15877")[0]["employee_name"] == "some Firstname and some Lastname"
     )
 
 
 # Positive scenario - function to test the method find_emp with employee_id '5212' in the database and check his/her title is "CHILD PROTECTIVE SPECIALIST"
 def test_find_emp3():
-    assert (
-        dbc.find_emp("5212")[0]["title_description"]
-        == "CHILD PROTECTIVE SPECIALIST"
-    )
+    assert dbc.find_emp("5212")[0]["title_description"] == "CHILD PROTECTIVE SPECIALIST"
 
 
 # Positive scenario - function to test the method view_emp in the database and check if it returns only 200 records as expected.
