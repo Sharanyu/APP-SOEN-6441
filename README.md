@@ -32,6 +32,14 @@ MVC (Model View Controller), in short, is a design pattern that is frequently us
 )
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+## Sequence Flow
+![](https://github.com/Sharanyu/APP-SOEN-6441/blob/main/media/sequence%20diagram.png
+)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 ## Usage
 
 ```sh
@@ -46,11 +54,16 @@ pip install -r requirements.txt
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Built With
+## Languages and Tools
 
-* ![Python](https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg)
-* [![SQLite][sqlite.org]][Sqlite-url]
-* [![Flask][flask.palletsprojects.com]][Flask]
+
+<div>
+  <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg" title="Python" alt="Python" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/sqlite/sqlite-original-wordmark.svg" title="SQLite" alt="SQLite" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/flask/flask-original-wordmark.svg" title="Flask" alt="Flask" width="40" height="40"/>&nbsp;
+
+</div>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
