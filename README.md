@@ -3,6 +3,7 @@
 
 New York Employee Information Retrieval System
 
+
 ## Project Description
 
 We have developed a flask application called “New York Employee Information Retrieval System”.
@@ -47,7 +48,7 @@ pip install -r requirements.txt
 
 ## Built With
 
-* [![Python][python.org]][Python-url]
+* [![Python][https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg]][Python-url]
 * [![SQLite][sqlite.org]][Sqlite-url]
 * [![Flask][flask.palletsprojects.com]][Flask]
 
