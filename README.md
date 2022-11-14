@@ -74,5 +74,5 @@ pip install -r requirements.txt
 ## Authors
 
 SanVinoth Pacham - mailpsss@gmail.com
-Sharanyu Pilli - sharanyu@hotmail.com
+Sharanyu Pillai - sharanyu@hotmail.com
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
