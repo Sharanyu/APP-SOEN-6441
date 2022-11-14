@@ -43,7 +43,7 @@ MVC (Model View Controller), in short, is a design pattern that is frequently us
 ## Usage
 
 ```sh
-python3 app.py # or py -3 main.py on windows
+python3 app.py # or py -3 app.py on windows
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
