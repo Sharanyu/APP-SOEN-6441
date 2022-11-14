@@ -48,7 +48,7 @@ pip install -r requirements.txt
 
 ## Built With
 
-* [![Python][https://github.com/devicons/devicon/blob/master/icons/python/python-original.svg]][Python-url]
+* ![Python](python.org)
 * [![SQLite][sqlite.org]][Sqlite-url]
 * [![Flask][flask.palletsprojects.com]][Flask]
 
