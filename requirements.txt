@@ -1,0 +1,8 @@
+pandas
+sqlite3
+flask
+os
+sys
+time
+socrata
+Path
