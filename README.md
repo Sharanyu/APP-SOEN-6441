@@ -78,4 +78,8 @@ pip install -r requirements.txt
 
 SanVinoth Pacham - mailpsss@gmail.com
 Sharanyu Pillai - sharanyu@hotmail.com
+<<<<<<< Updated upstream
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+=======
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+>>>>>>> Stashed changes
